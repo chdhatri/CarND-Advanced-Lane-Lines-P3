@@ -19,22 +19,23 @@ Link to [rubric points](https://review.udacity.com/#!/rubrics/571/view)
 ### Camera Calibration
 ##### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image
 
-The code for the camera matrix and distortion can be found in the Jupyter notebook project3.ipynb first 2 code cells. 
-A number of images of a chessboard are samepled in the camera_cal folder where images are taken from different angles with the same camera.The goal of the camera calibration is to undistort the distorted images.
+The code for the camera matrix and distortion can be found in the Jupyter notebook project3.ipynb (first 2 code cells).
 
-First cell explains how the obj points which are 3D points in real world are mapped to the img points, 2D points on the camera image by finding the corners using the OpenCV functions findChessboardCorners and drawChessboardCorners.
+A number of chessboard images are sampled in the camera_cal folder, where the images were taken from different angles with the same camera. The goal of this project is to undistort the distorted images and find the calibration matrix and distortion coefficients.
+
+First cell in the notebook explains how the obj points, which are 3D points in real world are mapped to the img points, 2D points on the camera image. Mapping is done by finding the corners using the OpenCV functions findChessboardCorners and drawChessboardCorners.
 
 Preview of corner drawn on images
 
-[Draw Chess board corners images](./images/findCorners.png "corner images")
+![png](./images/findCorners.png)
 
-If we notice the images we see image 1, 4,5 are empty. This is because the original image corners are hidden/out of the image scope. We had input 9X6 corners to the program and as program was not able to see enough corners it displayed blank images.
-
-Distorted images are corrected in cell 3, where OpenCV undistort function,  undistorts the effects of distortion on any image. It taked the obj and img points as input and return the matrix and distortion coefficients as output. These are stored in calibration.p. 
+If we notice the images, we see image calibration 1, 4, and 5 are empty. This is because the original image corners are hidden/out of the image scope. We had input 9X6 corners to the program and as program was not able to see enough corners it displayed blank images.
 
 Preview of undistortion on images
 
-[Draw Chess board corners images](./images/calibrate.png "calibrate images")
+![png](./images/calibrate.png)
+
+Code for correcting distorted images can be found in cell 3, where OpenCV undistort function was used. This function undistorts the effects of distortion on any image. It takes obj and img points as input and return the callibration matrix and distortion coefficients as output. These are stored in calibration.p. 
 
 Creating a great writeup:
 ---
