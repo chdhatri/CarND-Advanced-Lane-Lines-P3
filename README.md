@@ -2,7 +2,39 @@
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
 
-In this project, your goal is to write a software pipeline to identify the lane boundaries in a video, but the main output or product we want you to create is a detailed writeup of the project.  Check out the [writeup template](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup.  
+The goals / steps of this project are the following:
+
+* Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
+* Apply a distortion correction to raw images.
+* Use color transforms, gradients, etc., to create a thresholded binary image.
+* Apply a perspective transform to rectify binary image ("birds-eye view").
+* Detect lane pixels and fit to find the lane boundary.
+* Determine the curvature of the lane and vehicle position with respect to center.
+* Warp the detected lane boundaries back onto the original image.
+* Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+
+## Rubric Points
+Link to [rubric points](https://review.udacity.com/#!/rubrics/571/view) 
+
+### Camera Calibration
+##### 1. Briefly state how you computed the camera matrix and distortion coefficients. Provide an example of a distortion corrected calibration image
+
+The code for the camera matrix and distortion can be found in the Jupyter notebook project3.ipynb first 2 code cells. 
+A number of images of a chessboard are samepled in the camera_cal folder where images are taken from different angles with the same camera.The goal of the camera calibration is to undistort the distorted images.
+
+First cell explains how the obj points which are 3D points in real world are mapped to the img points, 2D points on the camera image by finding the corners using the OpenCV functions findChessboardCorners and drawChessboardCorners.
+
+Preview of corner drawn on images
+
+[Draw Chess board corners images](./images/findCorners.png "corner images")
+
+If we notice the images we see image 1, 4,5 are empty. This is because the original image corners are hidden/out of the image scope. We had input 9X6 corners to the program and as program was not able to see enough corners it displayed blank images.
+
+Distorted images are corrected in cell 3, where OpenCV undistort function,  undistorts the effects of distortion on any image. It taked the obj and img points as input and return the matrix and distortion coefficients as output. These are stored in calibration.p. 
+
+Preview of undistortion on images
+
+[Draw Chess board corners images](./images/calibrate.png "calibrate images")
 
 Creating a great writeup:
 ---
