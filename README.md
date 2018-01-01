@@ -37,6 +37,13 @@ Preview of undistortion on images
 
 Code for correcting distorted images can be found in cell 3, where OpenCV undistort function was used. This function undistorts the effects of distortion on any image. It takes obj and img points as input and return the callibration matrix and distortion coefficients as output. These are stored in calibration.p. 
 
+### Pipeline (Single test Images)
+ #### 1. Provide an example of a distortion-corrected image.
+ 
+ Preview of undistorted images taken sample image from the test_images folder
+ 
+ ![png](./images/undistortion.png)
+
 Creating a great writeup:
 ---
 A great writeup should include the rubric points as well as your description of how you addressed each point.  You should include a detailed description of the code used in each step (with line-number references and code snippets where necessary), and links to other supporting documents or external references.  You should include images in your writeup to demonstrate how your code works with examples.  
