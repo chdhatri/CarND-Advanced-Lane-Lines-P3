@@ -54,6 +54,29 @@ Code for correcting distorted images can be found in cell 3, where OpenCV undist
  
  ![png](./images/undistortion.png)
  
- #### 2. 
+ #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.
+ 
+ Preview of various channels of three different color spaces for the same image:
+ 
+ ![png](./images/color.png)
+ 
+ I decided to use following 
+ #### color transforms
+    * R and G channels, so yellow lanes are detected well.
+      ![png](./images/rgchannel.png)
+    * S channel performs well for detecting bright yellow and white lanes.
+     ![png](./images/schannel.png)
+
+* L channel to avoid pixels which have shadows.
+     ![png](./images/lchannel.png)
+  #### Gradients
+     * combined sobel(along x direction) and direction gradient, as it was highlighing the lane lines more.
+      ![png](./images/combined.png)
+   Thresholded image is the combination of color transforms and Gradients mentioned above.
+   Preview of the final thresholded image.
+   
+   #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
+ ![png](./images/perspective.png)
+     ![png](./images/threshold.png)
 
 
