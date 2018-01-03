@@ -94,3 +94,13 @@ After applying calibration, thresholding, and a perspective transform to a road 
 
 The code for my perspective transformed binary image is in cell 23. The openCV function unwarp() takes image,  source (src) and destination (dst) points as inputs. I picked 4 points in the source image which will form a trapezoid that would represent a rectangle when looking down on the road from above. 
 
+  #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
+  
+ After applying calibration, thresholding, and a perspective transform to a road test image, the resulted binary imagelane lines stand out clearly. But we still need to decide which pixels are part of the lines and which belong to the left line right line.
+
+ #### Histogram:
+
+As a first step I took a histogram along all the columns in the lower half of the image like this:
+
+![png](./images/histogram.png)
+
