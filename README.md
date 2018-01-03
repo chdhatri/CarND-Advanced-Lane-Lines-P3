@@ -67,6 +67,7 @@ Code to identify which color channels would yield better results in identifying 
     * R and G channels, so yellow lanes are detected well. (Cell 13)
     
  ![png](./images/rgchannel.png)
+ 
     * S channel performs well for detecting bright yellow and white lanes. (cell 15)
     
  ![png](./images/schannel.png)
@@ -89,5 +90,7 @@ Code to identify which color channels would yield better results in identifying 
    
 ![png](./images/perspective.png)
 
-The code for my perspective transform is titled "Perspective Transform" in cell 23. The openCV function unwarp() takes image,  source (src) and destination (dst) points as inputs. I chose to hardcode the source and destination points in the following manner
+After applying calibration, thresholding, and a perspective transform to a road image, we get the binary image where the lane lines stand out clearly.
+
+The code for my perspective transformed binary image is in cell 23. The openCV function unwarp() takes image,  source (src) and destination (dst) points as inputs. I picked 4 points in the source image which will form a trapezoid that would represent a rectangle when looking down on the road from above. 
 
