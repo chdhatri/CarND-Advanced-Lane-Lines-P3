@@ -57,7 +57,7 @@ Code to identify which color channels would yield better results in identifying 
 * HSV, S channel seems to recognize both Yellow and white lines better.
 
  Preview of color channels:
- ![png](./images/color.png
+ ![png](./images/color.png)
 
  
  #### b. Examples of Thresholds
@@ -65,20 +65,29 @@ Code to identify which color channels would yield better results in identifying 
  I decided to use below thresholds to identify which of these would yield better results in outputting better binary image.
  #### color threshold 
     * R and G channels, so yellow lanes are detected well. (Cell 13)
-      ![png](./images/rgchannel.png)
+    
+ ![png](./images/rgchannel.png)
     * S channel performs well for detecting bright yellow and white lanes. (cell 15)
-     ![png](./images/schannel.png)
+    
+ ![png](./images/schannel.png)
 
     * L channel to avoid pixels which have shadows. (Cell 15)
-      ![png](./images/lchannel.png)
+    
+ ![png](./images/lchannel.png)
   #### Gradients
      * combined sobel(along x direction) and direction gradient, as it was highlighing the lane lines more. (Cell 11)
-      ![png](./images/combined.png)
+     
+ ![png](./images/combined.png)
    
    After trying all the thresolds which I have learned from Udacity. combination of above color threshold(RG, S, L channels) and Gradients ( sobel + Direction) Thresholded gave better results. 
-   Preview of the final thresholded image.
-   ![png](./images/threhold.png)
+   
+  Preview of the final thresholded image.
+   
+![png](./images/threshold.png)
+   
    #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
- ![png](./images/perspective.png)
+   
+![png](./images/perspective.png)
+
 The code for my perspective transform is titled "Perspective Transform" in cell 23. The openCV function unwarp() takes image,  source (src) and destination (dst) points as inputs. I chose to hardcode the source and destination points in the following manner
 
