@@ -53,5 +53,7 @@ Code for correcting distorted images can be found in cell 3, where OpenCV undist
  Preview of undistorted images taken sample image from the test_images folder
  
  ![png](./images/undistortion.png)
+ 
+ #### 2. 
 
 
