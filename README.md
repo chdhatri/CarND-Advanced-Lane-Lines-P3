@@ -152,3 +152,5 @@ Below is an example of the results of the write_data function, which writes text
 ### Pipeline (video)
 
 1. Provide a link to your final video output. Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
+
+![Link to the Video](./project_video_out.mp4)
