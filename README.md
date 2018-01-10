@@ -118,31 +118,32 @@ The polyfit_using_prev_fit function performs basically the same task as sliding_
 
 After the poly fit, we calculate the radius of curvature by defining the y-value where we want radius of curvature. This is done by chooseing  maximum y-value, corresponding to the bottom of the image. But the calculated radius will be in pixel space. To convert it in to real world space we need change the pixel space to meters.The lane is about 30 meters long and 3.7 meters wide,
 
- ym_per_pix = 30/720 # meters per pixel in y dimension
- xm_per_pix = 3.7/700 # meters per pixel in x dimension
+    ym_per_pix = 30/720 # meters per pixel in y dimension
+    xm_per_pix = 3.7/700 # meters per pixel in x dimension
 
 Polynomials are fit in new world space:
 
- left_fit_cr = np.polyfit(ploty*ym_per_pix, leftx*xm_per_pix, 2)
- right_fit_cr = np.polyfit(ploty*ym_per_pix, rightx*xm_per_pix, 2)
+    left_fit_cr = np.polyfit(ploty*ym_per_pix, leftx*xm_per_pix, 2)
+    right_fit_cr = np.polyfit(ploty*ym_per_pix, rightx*xm_per_pix, 2)
 
 and the radius of curvature was calculated as:
 
- left_curverad = ((1 + (2*left_fit_cr[0]*y_eval*ym_per_pix + left_fit_cr[1])**2)**1.5) / np.absolute(2*left_fit_cr[0])
- right_curverad = ((1 + (2*right_fit_cr[0]*y_eval*ym_per_pix + right_fit_cr[1])**2)**1.5) / np.absolute(2*right_fit_cr[0])
+    left_curverad = ((1 + (2*left_fit_cr[0]*y_eval*ym_per_pix + left_fit_cr[1])**2)**1.5) / np.absolute(2*left_fit_cr[0])
+    right_curverad = ((1 + (2*right_fit_cr[0]*y_eval*ym_per_pix + right_fit_cr[1])**2)**1.5) / np.absolute(2*right_fit_cr[0])
 
 The position of the vehicle with respect to the center of the lane is calculated with the following lines of code:
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
 From the previous steps we have identified the left and right lane pixels, have arrays called left_fitx and right_fitx, which represent the x and y pixel values of the lines. we can then project those lines onto the original image as follows:
- * Create an image to draw the lines on
- * Recast the x and y points into usable format for cv2.fillPoly()
- * Draw the lane onto the warped blank image
- * Warp the blank back to original image space using inverse perspective matrix (Minv)
- * Combine the result with the original image
+   
+    * Create an image to draw the lines on
+    * Recast the x and y points into usable format for cv2.fillPoly()
+    * Draw the lane onto the warped blank image
+    * Warp the blank back to original image space using inverse perspective matrix (Minv)
+    * Combine the result with the original image
 
-![png](./images/draw_line.png)
+![png](./images/draw_lane.png)
 
 Below is an example of the results of the write_data function, which writes text identifying the curvature radius and vehicle position data onto the original image:
 
