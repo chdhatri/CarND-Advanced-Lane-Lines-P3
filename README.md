@@ -34,6 +34,8 @@ Preview of corner drawn on images
 #### b. Apply a distortion correction to raw images.
 Code for correcting distorted images can be found in cell 3, where OpenCV calibrateCamera and undistort function were used. Opencv function, calibrateCamera takes obj and img points as input and return the callibration matrix and distortion coefficients as output. These are stored in calibration.p. 
 
+
+
 undistort function undistorts the effects of distortion on any image. It takes distorted image, callibration matrix and distortion coefficients as input and return undistorted image as output.
 
 Preview of undistoretd chessboard image
@@ -154,3 +156,26 @@ Below is an example of the results of the write_data function, which writes text
 1. Provide a link to your final video output. Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
 ![Link to the Video](./project_video_out.mp4)
+
+
+### Conclusion
+Final result of pipeline is project_video_out.mp4. The model seems to identify the lanes correctly. 
+
+#### Points of failure & Areas of Improvement¶
+The pipeline did not work well for both challenge and harder challenge video.
+
+Challenge video has different light conditions
+
+Shadows from lane divider
+Lanes lines under different illumination conditions
+Harder Challenge video has sharp turns
+
+Steep curves
+Shadows from tress
+Different illumniation conditions
+To Improve code for the challenge conditions:
+
+Take a better Thresholding might help for challenge video as there are showdows from the different lane, we need to avoid those showdows .
+Average over a smaller number of frames might help as for the harder challenge video the shape and direction of lanes changes quite fast.
+
+The model fails when the image contains shades, and it will fail under many circumstances such as harsh weather conditions (snow, rain, fog, etc). In order to improve the model to successfully identify the lanes under theses conditions, we need to use a better way of reducing noises from images.
