@@ -41,6 +41,7 @@ undistort function undistorts the effects of distortion on any image. It takes d
 Preview of undistoretd chessboard image
  ![png](./images/calibrate.png)
 
+ 
 ### 2. Pipeline (Single test Images) 
  #### 1. Provide an example of a distortion-corrected image.
  As a first step we need to convert the original distorted image to undistorted image. Code for correcting distorted pipeline images can    be found in cell 5. 
@@ -48,15 +49,26 @@ Preview of undistoretd chessboard image
  Preview of undistoretd test image.
  ![png](./images/undistortion.png)
 
+
+#### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
+   
+![png](./images/perspective.png)
+
+This step is applied before thresholding, because error pixels in the binary are getting stretched out when the birds-eye transformation is performed second. Applying perspective before thresholding is resulting in better and clear lane lines
+
+The openCV function unwarp() takes image,  source (src) and destination (dst) points as inputs. I picked 4 points in the source image which will form a trapezoid that would represent a rectangle when looking down on the road from above. 
+
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.
 
 ##### a. Examples of Color transforms:
-Code to identify which color channels would yield better results in identifying the lane lines can be found in cell 7.
+Code to identify which color channels would yield better results in identifying the lane lines can be found in notebook.
 
  Preview of various channels of three different color spaces for the same image. It is identified that
 * RGB, R channel performed better in identifying lane lines
 * HLS, S, L channel seems to recognize both Yellow and white lines better
 * HSV, S channel seems to recognize both Yellow and white lines better.
+* LAB, B channel seems to recognize yello lines better
+* LUV, L channel seems to recognize white lines better
 
  Preview of color channels:
  ![png](./images/color.png)
@@ -66,36 +78,34 @@ Code to identify which color channels would yield better results in identifying 
 
  I decided to use below thresholds to identify which of these would yield better results in outputting better binary image.
  #### color threshold 
-    * R and G channels, so yellow lanes are detected well. (Cell 13)
+    * R and G channels, so yellow lanes are detected well. 
     
  ![png](./images/rgchannel.png)
  
-    * S channel performs well for detecting bright yellow and white lanes. (cell 15)
+    * S channel performs well for detecting bright yellow and white lanes.
     
  ![png](./images/schannel.png)
 
-    * L channel to avoid pixels which have shadows. (Cell 15)
+    * L channel for recignizing yellow lines 
     
  ![png](./images/lchannel.png)
+ 
+     * B channel for recognizing white lines
+     
+  ![png](./images/bchannel.png)   
+     
   #### Gradients
      * combined sobel(along x direction) and direction gradient, as it was highlighing the lane lines more. (Cell 11)
      
  ![png](./images/combined.png)
    
-   After trying all the thresolds which I have learned from Udacity. combination of above color threshold(RG, S, L channels) and Gradients ( sobel + Direction) Thresholded gave better results. 
+   After trying all the thresolds which I have learned from Udacity review comments. L of LUV and B of LAB gave better resukts
    
   Preview of the final thresholded image.
    
 ![png](./images/threshold.png)
    
-   #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
-   
-![png](./images/perspective.png)
-
-After applying calibration, thresholding, and a perspective transform to a road image, we get the binary image where the lane lines stand out clearly.
-
-The code for my perspective transformed binary image is in cell 23. The openCV function unwarp() takes image,  source (src) and destination (dst) points as inputs. I picked 4 points in the source image which will form a trapezoid that would represent a rectangle when looking down on the road from above. 
-
+ 
   #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
   
  After applying calibration, thresholding, and a perspective transform to a road test image, the resulted binary imagelane lines stand out clearly. But we still need to decide which pixels are part of the lines and which belong to the left line right line.
